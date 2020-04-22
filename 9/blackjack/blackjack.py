@@ -71,7 +71,7 @@ class BJ_Player(BJ_Hand):
     """Игрок в "Блек-джек" """
 
     def is_hitting(self):
-        response = games.ask_yes_no(f"\n{self.name}, удите брать еще карты? (Y/N): ")
+        response = games.ask_yes_no(f"\n{self.name}, будите брать еще карты? (Y/N): ")
         return response == "y"
 
     def bust(self):
@@ -118,7 +118,7 @@ class BJ_Game:
     @property
     def still_playing(self):
         sp = []
-        for player in self.players():
+        for player in self.players:
             if not player.is_busted():
                 sp.append(player)
         return sp
@@ -145,22 +145,22 @@ class BJ_Game:
             # все игроки перебрали, покажем только руку диллера
             print(self.dealer)
         else:
-            # сдачадополнительных карт дилеру
+            # сдача дополнительных карт дилеру
             print(self.dealer)
             self.__additional_cards(self.dealer)
             if self.dealer.is_busted():
                 # выигрывают все кто остался в игре
                 for player in self.still_playing:
                     player.win()
-                else:
-                    # сравниваем суммы очков у дилера и у игроков, оставшихся в игре
-                    for player in self.still_playing:
-                        if player.total > self.dealer.total:
-                            player.win()
-                        elif player.total < self.dealer.total:
-                            player.lose()
-                        else:
-                            player.push()
+            else:
+                # сравниваем суммы очков у дилера и у игроков, оставшихся в игре
+                for player in self.still_playing:
+                    if player.total > self.dealer.total:
+                        player.win()
+                    elif player.total < self.dealer.total:
+                        player.lose()
+                    else:
+                        player.push()
         # удаление всех карт
         for player in self.players:
             player.clear()
@@ -180,12 +180,10 @@ def main():
     while again != "n":
         game.play()
         again = games.ask_yes_no("\nХотите сыграть еще раз? ")
-        main()
-    input("\n\nНажмите Enter, чтобы выйти.")
 
 
-
-
+main()
+input("\n\nНажмите Enter, чтобы выйти.")
 
 
 
