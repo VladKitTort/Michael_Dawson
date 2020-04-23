@@ -132,6 +132,7 @@ class BJ_Game:
 
     def play(self):
         self.deck.populate()
+        self.deck.shuffle()
         # сдача всем по 2 карты
         self.deck.deal(self.players + [self.dealer], per_hand=2)
         self.dealer.flip_first_card()  # первая из карт, сданных диллеру, переворачивается рубашкой вверх
