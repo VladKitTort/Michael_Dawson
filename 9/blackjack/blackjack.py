@@ -50,12 +50,12 @@ class BJ_Hand(cards.Hand):
                 return None
             # суммируем очки, считая каждый туз за 1 очко
             t = 0
-            for card in self.cards:
-                t += card.value
+            for playing_card in self.cards:
+                t += playing_card.value
             # определяем есть ли туз на руках у игрока
             contains_ace = False
-            for card in self.cards:
-                if card.value == BJ_Card.ACE_VALUE:
+            for playing_card in self.cards:
+                if playing_card.value == BJ_Card.ACE_VALUE:
                     contains_ace = True
             # если на руках есть туз и сумма очков не привешает 11, будем считать туз за 11 очков
             if contains_ace and t <= 11:
@@ -175,7 +175,7 @@ def main():
     number = games.ask_number("Сколько всего игроков? (1-7): ", low=1, high=8)
     for i in range(number):
         name = input("Введите имя игрока: ")
-        names.append(name)
+        names.append(name.title())
         print()
     game = BJ_Game(names)
     again = None
@@ -186,21 +186,3 @@ def main():
 
 main()
 input("\n\nНажмите Enter, чтобы выйти.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
