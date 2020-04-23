@@ -169,6 +169,7 @@ class BJ_Game:
         self.dealer.clear()
 
 
+
 def main():
     print("\t\tДобро пожаловать за игровой стол Блек-джека!\n")
     names = []
